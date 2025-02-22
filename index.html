@@ -39,6 +39,7 @@
         tr:hover {
             background-color: #e9f5ff;
             transform: scale(1.02);
+            cursor: pointer;
         }
         .dept-logo {
             width: 100px;
@@ -63,21 +64,6 @@
             font-weight: bold;
             color: #28a745;
         }
-        @media (max-width: 600px) {
-            .dept-name {
-                font-size: 1.2em;
-            }
-            .dept-logo {
-                width: 70px;
-                height: 70px;
-            }
-            th, td {
-                padding: 10px;
-            }
-            .points {
-                font-size: 1.5em;
-            }
-        }
     </style>
 </head>
 <body>
@@ -96,15 +82,30 @@
         </table>
     </div>
     
+    <!-- Modal for department details -->
+    <div class="modal fade" id="deptModal" tabindex="-1" aria-labelledby="deptModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deptModalLabel">Details of Points</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Details will be inserted here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const departmentPoints = [
-            { name: "Computer", logo:"images/comp.jpg", points: 25 },
-            { name: "Mechanical", logo: "images/mech.jpg", points: 27 },
-            { name: "Chemical", logo: "images/chem.jpg", points: 25 },
-            { name: "E&TC", logo: "images/entc.jpg", points: 19 },
-            { name: "Design", logo: "images/design.jpg", points: 20 },
-            { name: "Civil", logo: "images/civil.jpg", points: 15 },
-            { name: "First Year", logo: "images/fy.jpg", points: 21 }
+            { name: "Computer", logo:"images/comp.jpg", points: 25, details: { Basketball_Boys: 10, Volleyball_Boys: 5, Shotput_Girl: 5, Carrom: 7 } },
+            { name: "Mechanical", logo: "images/mech.jpg", points: 27, details: { Basketball_Boys: 5, Basketball_Girls: 5, Volleyball_Boys: 10, Shotput_Boys: 7 } },
+            { name: "Chemical", logo: "images/chem.jpg", points: 25, details: { Carrom_Boys: 10, Basketball_Boys: 5, Shotput_Girl: 10 } },
+            { name: "E&TC", logo: "images/entc.jpg", points: 19, details: { Carrom_Boys: 7, Basketball_Boys: 7, Volleyball_Boys: 5 } },
+            { name: "Design", logo: "images/design.jpg", points: 20, details: { Carrom_Boys: 5, Basketball_Girls: 10, Shotput_Boys: 5 } },
+            { name: "Civil", logo: "images/civil.jpg", points: 15, details: { Basketball_Girls: 5, Shotput_Boys: 10 } },
+            { name: "First Year", logo: "images/fy.jpg", points: 21, details: { Volleyball_Boys: 7, Basketball_Girls: 7, Shotput_Girl: 7 } }
         ];
 
         departmentPoints.sort((a, b) => b.points - a.points);
@@ -112,7 +113,7 @@
         const tableBody = document.getElementById("pointsTable");
         
         departmentPoints.forEach(dept => {
-            let row = `<tr>
+            let row = `<tr onclick="showDetails('${dept.name}')">
                 <td class="dept-name">
                     <img src="${dept.logo}" alt="${dept.name}" class="dept-logo">
                     ${dept.name}
@@ -121,13 +122,21 @@
             </tr>`;
             tableBody.innerHTML += row;
         });
+
+        function showDetails(deptName) {
+            const dept = departmentPoints.find(d => d.name === deptName);
+            let sortedDetails = Object.entries(dept.details).sort((a, b) => b[1] - a[1]);
+            let detailsHtml = `<h5>${dept.name}</h5><ul>`;
+            sortedDetails.forEach(([sport, points]) => {
+                detailsHtml += `<li>${sport}: ${points} points</li>`;
+            });
+            detailsHtml += `</ul>`;
+            document.getElementById("modalBody").innerHTML = detailsHtml;
+            new bootstrap.Modal(document.getElementById('deptModal')).show();
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <footer class="mt-4 text-center text-muted">
-      &copy; 2025 Harshvardhan Patil
-  </footer>
-</body>
-</html>
+    <footer class="mt-4 text-center text-muted">&copy; 2025 Harshvardhan Patil</footer>
 </body>
 </html>
