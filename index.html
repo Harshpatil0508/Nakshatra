@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MMJCZ2QC');
-    </script>
-    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Department Points - Nakshatra</title>
@@ -72,15 +64,26 @@
             font-weight: bold;
             color: #28a745;
         }
+        .schedule-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007BFF;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .schedule-link:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMJCZ2QC"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div class="container mt-4">
+        <a href="schedule.html" class="schedule-link" target="_blank">View Sports Schedule</a>
         <h2 class="mb-4 text-primary">Nakshatra Sports Point Table</h2>
         <table class="table table-striped table-hover">
             <thead>
@@ -112,7 +115,7 @@
 
     <script>
         const departmentPoints = [
-            { name: "Computer", logo:"images/comp.jpg", points: 47, details: { Khokho_Girls : 10,Khokho_Boys : 5,Basketball_Boys: 10, Volleyball : 5, Shotput_Girl: 5, Carrom_Boys: 7,Throwball : 7 } },
+        { name: "Computer", logo:"images/comp.jpg", points: 47, details: { Khokho_Girls : 10,Khokho_Boys : 5,Basketball_Boys: 10, Volleyball : 5, Shotput_Girl: 5, Carrom_Boys: 7,Throwball : 7 } },
             { name: "Mechanical", logo: "images/mech.jpg", points: 59, details: {Khokho_Boys : 7 ,Khokho_Girls : 5,Basketball_Boys: 5, Basketball_Girls: 5, Volleyball: 10, Shotput_Boys: 7,Kabaddi:10,Throwball : 10} },
             { name: "Chemical", logo: "images/chem.jpg", points: 30, details: { Khokho_Girls : 5,Carrom_Boys: 10, Basketball_Boys: 5, Shotput_Girl: 10 } },
             { name: "E&TC", logo: "images/entc.jpg", points: 41, details: { Khokho_Girls : 7,Khokho_Boys : 10,Carrom_Boys: 7, Basketball_Boys: 7, Volleyball: 5,Throwball:5} },
